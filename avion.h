@@ -1,36 +1,37 @@
 #ifndef AVION_H
 #define AVION_H
-#include <iostream>
-#include <string>
-//test tutoriel git
-using namespace  std ;
-class avion {
+
+#include <QString>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
+#include<qdatetimeedit.h>
+#include<qdatetime.h>
+#include <QVariant>
+#include <QComboBox>
+class avion
+{
+public:
+    avion();
+    avion(int,QString,int,int);
+    int get_code_ingredient(){return codeingredient;}
+    QString get_type_ingredient(){return type;}
+    int get_prix_ingredient(){return prix;}
+    int get_quantite(){return quantite;}
+
+    bool ajouter2();
+    bool supprimer2(int);
+    QSqlQueryModel *afficher2();
+    bool modifier2(int,QString,int,int);
+    QSqlQueryModel *trier_codeingredient();
+    QSqlQueryModel *stat();
+
+
 private:
-
-    int code ;
-    string nom ;
-    string directin ;
-    string localisation ;
-    int durée vol ;
-    bool retard ;
-public :
-    string getNomAvi()const{return getNomAvi();}
-    int getCodeAvi()const {return getCodeAvi();}
-    int getduréeAvi()const {return getduréeAvi();}
-    bool getRetardAvi()const {return getRetardAvi();}
-    string getDirectionAvi()const{return getDirectionAvi() ;}
-    string getLocalisationAvi()const{return getLocalisationAvi() ;}
-
- void ajouterAvi();
- void supprimerAvi(float);
- void chercherAvi(avion *a);
- void trierAvi(avion a);
- void imprimer (avion a) ;
- void miseajourAvi(avion a);
- void pdfAvi();
- void insertionimageAvi(avion a);
+    int codeingredient;
+    QString type;
+    int prix;
+    int quantite;
+};
 
 
-}
-
-#endif // AVION_H
+#endif
