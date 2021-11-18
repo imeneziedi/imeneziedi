@@ -12,25 +12,32 @@ class avion
 {
 public:
     avion();
-    avion(int,QString,int,int);
-    int get_code_ingredient(){return codeingredient;}
-    QString get_type_ingredient(){return type;}
-    int get_prix_ingredient(){return prix;}
-    int get_quantite(){return quantite;}
+    avion(int,QString,int,QString,QString,QString);
+    int get_codeavion(){return codeavion;}
+    QString get_depart(){return depart;}
+    int get_nbplace(){return nbplace;}
+    QString get_arrivee(){return arrivee;}
+     QString get_date(){return datee;}
+      QString get_duree(){return duree;}
 
     bool ajouter2();
     bool supprimer2(int);
     QSqlQueryModel *afficher2();
-    bool modifier2(int,QString,int,int);
-    QSqlQueryModel *trier_codeingredient();
+    bool modifier2(int,QString,int,QString,QString,QString);
+    QSqlQueryModel *trier_codeavion();
     QSqlQueryModel *stat();
+    QSqlQueryModel * chercher(int);
+
 
 
 private:
-    int codeingredient;
-    QString type;
-    int prix;
-    int quantite;
+    int codeavion;
+    QString depart;
+    int nbplace;
+    QString arrivee ;
+    QString datee ;
+    QString duree ;
+
 };
 
 

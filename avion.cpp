@@ -4,75 +4,93 @@
 #include <QSqlQuery>
 #include<QSqlQueryModel>
 
-ingredient::ingredient()
+avion::avion()
 {
-    codeingredient=0;
-    prix=0;
-    QString nombre_place="";
-    quantite=0;
+    codeavion=0;
+    nbplace=0;
+    QString depart="";
+     QString arrivee="";
+     QString datee="";
+     QString duree="";
 }
 
-ingredient::ingredient(int codeingredient,QString type,int prix,int quantite)
+avion::avion(int codeavion,QString depart,int nbplace,QString arrivee,QString datee,QString duree)
 {
-    this->codeingredient=codeingredient;
-    this->type=type;
-    this->prix=prix;
-    this->quantite=quantite;
+    this->codeavion=codeavion;
+    this->depart=depart;
+    this->nbplace=nbplace;
+    this->arrivee=arrivee;
+    this->datee=datee;
+    this->duree=duree;
 }
 
-bool ingredient::ajouter2()
+bool avion::ajouter2()
 {
     QSqlQuery query;
-    QString res=QString::number(codeingredient);
-    QString ress=QString::number(prix);
-    QString resss=QString::number(quantite);
-    query.prepare("INSERT INTO avion(codeingredient,type,prix,quantite)""VALUES(:codeingredient,:type,:prix,:quantite)");
-    query.bindValue(":type",type);
-
+    QString res=QString::number(codeavion);
+    QString ress=QString::number(nbplace);
+    query.prepare("INSERT INTO avionn(codeavion,depart,nbplace,arrivee,datee,duree)""VALUES(:codeavion,:depart,:nbplace,:arrivee,:datee,:duree)");
+     query.bindValue(":codeavion",res);
+     query.bindValue(":nbplace",ress);
     return query.exec();
 }
 
-bool ingredient::supprimer2(int i)
+bool avion::supprimer2(int i)
 {
     QSqlQuery query;
     QString res=QString::number(i);
-    query.prepare("DELETE FROM ingredient where codeingredient=:codeingredient");
-    query.bindValue(":codeingredient",res);
+    query.prepare("DELETE FROM avionn where codeavion=:codeavion");
+    query.bindValue(":codeavion",res);
     return query.exec();
 }
 
-QSqlQueryModel *ingredient::afficher2()
+QSqlQueryModel *avion::afficher2()
 {
     QSqlQueryModel *model = new QSqlQueryModel();
-    model->setQuery("select * from ingredient ");
-    model->setHeaderData(0,Qt::Horizontal,"codeingredient");
-    model->setHeaderData(1,Qt::Horizontal,"type");
-    model->setHeaderData(2,Qt::Horizontal,"prix");
-    model->setHeaderData(3,Qt::Horizontal,"quantite");
+    model->setQuery("select* from avionn ");
+    model->setHeaderData(0,Qt::Horizontal,"codeavion");
+    model->setHeaderData(1,Qt::Horizontal,"depart");
+    model->setHeaderData(2,Qt::Horizontal,"nbplace");
+    model->setHeaderData(3,Qt::Horizontal,"arrivee");
+    model->setHeaderData(4,Qt::Horizontal,"datee");
+    model->setHeaderData(5,Qt::Horizontal,"duree");
     return model ;
 }
 
-bool ingredient::modifier2(int codeingredient,QString type,int prix,int quantite)
+bool avion::modifier2(int codeavion,QString depart,int nbplace,QString arrivee,QString datee,QString duree)
 {
     QSqlQuery query;
-    query.prepare("UPDATE ingredient SET codeingredient=:codeingredient,type=:type,prix=:prix,quantite=:quantite WHERE codeingredient=:codeingredient");
-    QString res= QString::number(codeingredient);
-    QString ress=QString::number(prix);
-    QString resss=QString::number(quantite);
-    query.bindValue(":codeingredient",res);
-    query.bindValue(":type",type);
-    query.bindValue(":prix",ress);
-    query.bindValue(":quantite",resss);
+    query.prepare("UPDATE avionn SET codeavion=:codeavion,depart=:depart,nbplace=:nbplace,arrivee=:arrivee,datee=:datee,duree=:duree WHERE codeavion=:codeavion");
+    QString res= QString::number(codeavion);
+    QString ress=QString::number(nbplace);
+    query.bindValue(":codeavion",res);
+    query.bindValue(":depart",depart);
+     query.bindValue(":nbplace",ress);
+      query.bindValue(":arrivee",arrivee);
+       query.bindValue(":datee",datee);
+        query.bindValue(":duree",duree);
     return query.exec();
 }
 
-QSqlQueryModel * ingredient::trier_codeingredient()
+QSqlQueryModel * avion::trier_codeavion()
 {
     QSqlQueryModel * model= new QSqlQueryModel();
-    model->setQuery("SELECT * from ingredient ORDER BY codeingredient");
-    model->setHeaderData(0,Qt::Horizontal,"codeingredient");
-    model->setHeaderData(1,Qt::Horizontal,"type");
-    model->setHeaderData(2,Qt::Horizontal,"prix");
-    model->setHeaderData(3,Qt::Horizontal,"quantite");
+    model->setQuery("SELECT * from avionn ORDER BY codeavion");
+    model->setHeaderData(0,Qt::Horizontal,"codeavion");
+    model->setHeaderData(1,Qt::Horizontal,"depart");
+    model->setHeaderData(2,Qt::Horizontal,"nbplace");
+    model->setHeaderData(3,Qt::Horizontal,"arrivee");
+    model->setHeaderData(4,Qt::Horizontal,"datee");
+    model->setHeaderData(5,Qt::Horizontal,"duree");
     return model;
 }
+QSqlQueryModel *  avion::chercher(int codeavion)
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    QString res=QString::number(codeavion);
+    model->setQuery("SELECT * FROM avionn WHERE (codeavion LIKE '"+res+"' ) ");
+    return  model;
+
+
+}
+

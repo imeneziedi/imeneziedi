@@ -3,13 +3,14 @@ QT       += core gui
 QT += widgets multimedia
 QT       += core gui sql
 QT       +=core gui serialport
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT += widgets multimedia
 QT += printsupport
 QT +=gui
 QT += widgets
 DEFINES += QT_DEPRECATED_WARNINGS
-TARGET = Restau.pro
+TARGET = avion.pro
 
 CONFIG += c++11
 

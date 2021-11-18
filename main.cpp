@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
     if(c.ouvrirconnexion())
     {
         login l;
-        l.show();
-        w.afficher();
         w.afficher2();
+
+        l.show();
         QObject::connect(&l,&login::sig,&w,&MainWindow::show);
 
         return a.exec();
