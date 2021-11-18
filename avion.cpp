@@ -14,6 +14,8 @@ avion::avion()
      QString duree="";
 }
 
+
+
 avion::avion(int codeavion,QString depart,int nbplace,QString arrivee,QString datee,QString duree)
 {
     this->codeavion=codeavion;
